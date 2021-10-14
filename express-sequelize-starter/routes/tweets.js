@@ -2,7 +2,6 @@ const express = require('express');
 const { Tweet } = require('../db/models')
 const { check, validationResult } = require('express-validator')
 const asyncHandler = require('express-async-handler');
-const { route } = require('.');
 
 // helper functions
 const tweetNotFoundError = (tweetId) => {
