@@ -3,6 +3,7 @@ const { Tweet } = require('../db/models')
 const { check, validationResult } = require('express-validator')
 const asyncHandler = require('express-async-handler');
 const { handleValidationErros } = require('../utils')
+const { requireAuth } = require("../auth")
 
 // helper functions
 const tweetNotFoundError = (tweetId) => {
@@ -27,6 +28,7 @@ const tweetsValidator = [
 
 const router = express.Router();
 
+router.use(requireAuth)
 
 // Tweet.findAll()
 router.get("/", asyncHandler(async (req, res) => {
