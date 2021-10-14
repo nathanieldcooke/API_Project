@@ -2,6 +2,7 @@ const express = require('express');
 const { Tweet } = require('../db/models')
 const { check, validationResult } = require('express-validator')
 const asyncHandler = require('express-async-handler');
+const { handleValidationErros } = require('../utils')
 
 // helper functions
 const tweetNotFoundError = (tweetId) => {
@@ -21,19 +22,7 @@ const tweetsValidator = [
         .withMessage('Tweet cannot exceed 280 character limit')
 ]
 
-const handleValidationErros = (req, res, next) => {
-    const validationErrors = validationResult(req);
-    const errors = validationErrors.array().map((error) => error.msg);
-    if (errors.length) {
-        const err = Error("Bad request.");
-        err.errors = errors;
-        err.status = 400;
-        err.title = "Bad request.";
-        next(err);
-    } else {
-        next()
-    }
-}
+
 
 
 const router = express.Router();
