@@ -40,6 +40,3 @@ app.use((err, req, res, next) => {
 module.exports = app;
 
 
-// he9Epb5Vq48gcUc
-
-// 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
